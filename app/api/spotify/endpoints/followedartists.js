@@ -11,7 +11,6 @@ router.get('/', getSpotifyToken, async(req, res) => {
         const type = req.query.type;
         const accessToken = await redisClient.get(`accessToken:creed`);
 
-        // Define a function that makes the HTTP request
         const fetchFollowedArtists = async () => {
             return axios.get('https://api.spotify.com/v1/me/following', {
                 method: 'GET',
@@ -22,7 +21,7 @@ router.get('/', getSpotifyToken, async(req, res) => {
             });
         };
 
-        // Use retry with the fetchFollowedArtists function
+
         retry(fetchFollowedArtists)
        .then(response => {
             res.json(response.data);

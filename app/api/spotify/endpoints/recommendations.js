@@ -3,10 +3,10 @@ const axios = require('axios');
 const router = express.Router();
 const getSpotifyToken = require('../../../middleware/authentication');
 
-// Route to handle requests to the recommendations endpoint
+
 router.get('/', getSpotifyToken, async (req, res) => {
  try {
-    // Use the Spotify token obtained from the middleware
+    
     const spotifyApi = axios.create({
       baseURL: 'https://api.spotify.com/v1',
       headers: {
@@ -14,7 +14,7 @@ router.get('/', getSpotifyToken, async (req, res) => {
       }
     });
 
-    // Example parameters for the Spotify API's recommendations endpoint
+    
     const params = {
       seed_artists: '0OdUWJ0sBjDrqHygGUXeCF',
       seed_genres: 'pop',
@@ -22,10 +22,10 @@ router.get('/', getSpotifyToken, async (req, res) => {
       limit: 5
     };
 
-    // Make a request to the Spotify API's recommendations endpoint
+    
     const response = await spotifyApi.get('/recommendations', { params });
 
-    // Send the response back to the client
+   
     res.json(response.data);
  } catch (error) {
     console.error(error);

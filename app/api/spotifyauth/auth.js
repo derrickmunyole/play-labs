@@ -6,9 +6,9 @@ const { redisClient } =require('../../redis/client');
 const retry = require('../../utils/retry')
 
 
-const client_id = process.env.SPOTIFY_CLIENT_ID; // your clientId
-const client_secret = process.env.SPOTIFY_CLIENT_SECRET; // Your secret
-const redirect_uri = process.env.REDIRECT_URI; // Your redirect uri
+const client_id = process.env.SPOTIFY_CLIENT_ID; 
+const client_secret = process.env.SPOTIFY_CLIENT_SECRET; 
+const redirect_uri = process.env.REDIRECT_URI;
 
 
 const generateRandomString = (length) => {
@@ -21,7 +21,7 @@ const generateRandomString = (length) => {
 let stateKey = 'spotify_auth_state';
 
 const exchangeCodeForToken = async (authCode) => {
-  // Extracting data and headers from authOptions
+  
   const data = {
     code: authCode,
     redirect_uri: redirect_uri,
@@ -46,7 +46,7 @@ const loginRoute = (app) => {
         console.log("CLIENT ID:", client_id)
         console.log("CLIENT SECRET:",client_secret)
         console.log("REDIRECT_URI:", redirect_uri)
-        // Authorization scopes
+        
         let scope = `user-read-private 
                      user-read-email 
                      user-follow-read 

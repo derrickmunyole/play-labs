@@ -19,4 +19,4 @@ app.use(require('./middleware/authentication'));
 app.use('/api', spotifyRoutes);
 app.use(require('./middleware/errorhandling'));
 
-module.exports = app; // Export the app for use in server.js
+module.exports = app;

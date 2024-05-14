@@ -2,13 +2,13 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
-// Middleware to ensure the Spotify token is available
+
 const getSpotifyToken = require('../../../middleware/authentication');
 
 router.get('/', getSpotifyToken, async (req, res) => {
  try {
-    const query = req.query.q; // The search query
-    const type = req.query.type; // The type of resource to search for (e.g., 'track', 'album')
+    const query = req.query.q; 
+    const type = req.query.type; 
 
     const response = await axios.get(`https://api.spotify.com/v1/search`, {
       headers: {
@@ -17,7 +17,7 @@ router.get('/', getSpotifyToken, async (req, res) => {
       params: {
         q: query,
         type: type,
-        limit: 10, // Limit the number of results
+        limit: 10, 
       },
     });
 
