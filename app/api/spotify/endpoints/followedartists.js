@@ -23,19 +23,17 @@ router.get('/', getSpotifyToken, async(req, res) => {
 
 
         retry(fetchFollowedArtists)
-       .then(response => {
-            res.json(response.data);
-        })
-       .catch(error => {
-            console.error("Error making request to /me/following:", error);
-            res.status(500).json({ error: 'An error occurred while fetching followed artists.' });
-        });
-    } catch (error) {
-        console.error("Error in followedartists.js:", error);
-        res.status(500).json({ error: 'An error occurred.' });
-    }
-});
+        .then(response => {
+                res.json(response.data);
+            })
+        .catch(error => {
+                console.error("Error making request to /me/following:", error);
+                res.status(500).json({ error: 'An error occurred while fetching followed artists.' });
+            });
+        } catch (error) {
+            console.error("Error in followedartists.js:", error);
+            res.status(500).json({ error: 'An error occurred.' });
+        }
+    });
 
 module.exports = router;
-
-module.exports = router
