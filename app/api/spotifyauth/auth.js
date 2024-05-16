@@ -98,7 +98,7 @@ const callbackRoute = (app) => {
           return;
         }
 
-        // Make a request to the /v1/me endpoint to get the user's details
+
         return axios.get('https://api.spotify.com/v1/me', {
           headers: {
             'Authorization': `Bearer ${access_token}`
@@ -106,13 +106,11 @@ const callbackRoute = (app) => {
         });
       })
      .then(userDetails => {
-        // Extract the user ID from the userDetails
+
         let userId = userDetails.data.id;
 
-        // Log the userId for demonstration
         console.log('User ID:', userId);
 
-        // Store the userId and refresh_token in Redis
         redisClient.set('userId', userId, 'EX', 3600, (err, reply) => {
           if (err) {
             console.error('Error setting userId in Redis:', err);
@@ -121,7 +119,6 @@ const callbackRoute = (app) => {
           }
         });
 
-        // Assuming you want to store the access_token and refresh_token associated with this userId
         redisClient.set(`accessToken:${userId}`, access_token, 'EX', 3600, (err, reply) => {
           if (err) {
             console.error('Error setting access token in Redis:', err);
