@@ -47,10 +47,10 @@ const loginRoute = (app) => {
     console.log("REDIRECT_URI:", redirect_uri)
 
     let scope = `user-read-private 
-                     user-read-email 
-                     user-follow-read 
-                     playlist-modify-public 
-                     playlist-modify-private`;
+                 user-read-email 
+                 user-follow-read 
+                 playlist-modify-public 
+                 playlist-modify-private`;
 
     res.redirect('https://accounts.spotify.com/authorize?' +
       querystring.stringify({
@@ -135,7 +135,6 @@ const callbackRoute = (app) => {
           }
         });
 
-        // Optionally, send the user details or a success message back to the client
         res.send({ message: 'Authentication successful', userId: userId });
       })
      .catch((e) => {
